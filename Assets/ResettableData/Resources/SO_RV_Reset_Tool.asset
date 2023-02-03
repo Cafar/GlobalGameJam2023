@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df743221d8579af46bcd1f817cfb4d75, type: 3}
+  m_Name: SO_RV_Reset_Tool
+  m_EditorClassIdentifier: 
+  customValues: {fileID: 11400000, guid: fa12630ba8a9cf64aa112e240d2af078, type: 2}
+  RunetimeValues: []
