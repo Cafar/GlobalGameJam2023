@@ -11,15 +11,17 @@ public class RotationRhythm : MonoBehaviour
     private float velocityRotation;
     [SerializeField]
     private FloatVariable timeLineBar;
+    [SerializeField]
+    private FloatVariable timeLineBeat;
 
     private bool rotated;
 
     void Update()
     {
-        if (timeLineBar % 2 == 0 && !rotated)
+        if (timeLineBar % 2 == 0 && timeLineBeat.value == 2 && !rotated)
         {
             rotated = true;
-            transform.DORotateQuaternion(Quaternion.AngleAxis(velocityRotation, Vector3.forward), 0.2f).SetRelative(true).SetEase(Ease.Linear);
+            transform.DORotateQuaternion(Quaternion.AngleAxis(velocityRotation, Vector3.forward), 0.05f).SetRelative(true).SetEase(Ease.Linear);
             //transform.Rotate(new Vector3(0, 0, 30)); //= Quaternion.AngleAxis(transform.rotation.z + 30, Vector3.forward);
         }
 

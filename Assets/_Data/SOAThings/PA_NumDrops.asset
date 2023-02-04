@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de10f966f81318f46bf4d5bd4454d7fc, type: 3}
-  m_Name: PA_PlayersAlive
+  m_Name: PA_NumDrops
   m_EditorClassIdentifier: 
-  value: 0
+  value: 2

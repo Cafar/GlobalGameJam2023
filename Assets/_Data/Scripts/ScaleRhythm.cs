@@ -14,8 +14,8 @@ public class ScaleRhythm : MonoBehaviour
     {
         if (timeLineBar % 2 == 0)
         {
-            transform.DOScale(1.2f, 0.2f).SetEase(Ease.OutBounce).OnComplete(() =>
-            transform.DOScale(1f, 0.2f).SetEase(Ease.OutBounce)
+            transform.DOScale(1.2f, 0.1f).SetEase(Ease.OutBounce).OnComplete(() =>
+            transform.DOScale(1f, 0.1f).SetEase(Ease.OutBounce)
             );
             lastTimeLineBar = timeLineBar.value;
         }

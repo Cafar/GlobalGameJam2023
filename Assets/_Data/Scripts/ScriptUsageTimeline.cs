@@ -1,3 +1,4 @@
+using FMODUnity;
 using SOA;
 using System;
 using System.Runtime.InteropServices;
@@ -12,10 +13,15 @@ class ScriptUsageTimeline : MonoBehaviour
         public FMOD.StringWrapper LastMarker = new FMOD.StringWrapper();
     }
 
+    [ParamRef]
+    public string drops;
     public FloatVariable timeLineBar;
     public FloatVariable timeLineBeat;
+    public IntVariable numDrops;
     TimelineInfo timelineInfo;
     GCHandle timelineHandle;
+
+    private int lastDrop;
 
     public FMODUnity.EventReference EventName;
 
@@ -31,6 +37,7 @@ class ScriptUsageTimeline : MonoBehaviour
 
     void Start()
     {
+        numDrops.value = 0;
         timelineInfo = new TimelineInfo();
 
         // Explicitly create the delegate object and assign it to a member so it doesn't get freed
@@ -52,6 +59,11 @@ class ScriptUsageTimeline : MonoBehaviour
     {
         timeLineBar.value = timelineInfo.bar;
         timeLineBeat.value = timelineInfo.beat;
+        if(lastDrop != numDrops.value)
+        {
+            PlayMusicPressStart();
+            lastDrop = numDrops.value;
+        }
     }
 
     void OnDestroy()
@@ -92,8 +104,6 @@ class ScriptUsageTimeline : MonoBehaviour
                         var parameter = (FMOD.Studio.TIMELINE_BEAT_PROPERTIES)Marshal.PtrToStructure(parameterPtr, typeof(FMOD.Studio.TIMELINE_BEAT_PROPERTIES));
                         timelineInfo.bar = parameter.bar;
                         timelineInfo.beat = parameter.beat;
-                        Debug.Log("BEAT: " + parameter.beat);
-                        Debug.Log("bar: " + parameter.bar);
                     }
                     break;
                 case FMOD.Studio.EVENT_CALLBACK_TYPE.TIMELINE_MARKER:
@@ -105,5 +115,10 @@ class ScriptUsageTimeline : MonoBehaviour
             }
         }
         return FMOD.RESULT.OK;
+    }
+
+    public void PlayMusicPressStart()
+    {
+        RuntimeManager.StudioSystem.setParameterByName(drops, numDrops.value);
     }
 }
